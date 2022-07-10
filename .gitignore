@@ -1,0 +1,9 @@
+# Directories
+vendor/
+
+# Composer files
+composer.lock
+composer.phar
+
+# MongoDB collections dump files
+computers.json
