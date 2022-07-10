@@ -1,0 +1,24 @@
+<?php
+	include_once 'view/inc/header.phtml';
+?>
+
+<header>
+	<p>Results for: <span class="queryParam" data-param="<?php echo $dataParam; ?>"><?php echo $resultsParam; ?></span></p>
+	<?php if (isset($_GET['loadBtn'])) { echo "<p>Loaded successfully!</p>"; } ?>
+	<p class="save-done no-display">Saved successfully!</p>
+	<p class="save-already no-display">Results have already been cached!</p>
+</header>
+
+<section class="queryResult<?php if (isset($_GET['loadBtn'])) { echo " load"; } ?>">
+	<?php
+		if (isset($_GET['getBtn'])) {
+			foreach ($resultsArray as $result) {
+				print($result . "\n");
+			}
+		}
+	?>
+</section>
+
+<?php
+	include_once 'view/inc/footer.phtml';
+?>

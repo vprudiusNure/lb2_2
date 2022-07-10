@@ -1,0 +1,39 @@
+<?php
+	include_once 'view/inc/header.phtml';
+?>
+
+<span>Вывести список компьютеров с центральным процессором</span>
+<form action="/handler/cpu" method="get">
+	<select name="cpuList" data-type="cpu" id="cpuList" autocomplete="off">
+		<?php
+			include_once "lists/cpu.php";
+		?>
+	</select>
+	<input type="submit" name="getBtn" value="Ok">
+	<input type="submit" name="loadBtn" class="load-btn cpu no-display" value="Load">
+	<span class="cached cpu no-display">No cached results for this value!</span>
+</form>
+
+<span>Вывести список компьютеров с установленным ПО</span>
+<form action="/handler/software" method="get">
+	<select name="softwareList" data-type="software" id="softwareList" autocomplete="off">
+		<?php
+			include_once "lists/software.php";
+		?>
+	</select>
+	<input type="submit" name="getBtn" value="Ok">
+	<input type="submit" name="loadBtn" class="load-btn software no-display" value="Load">
+	<span class="cached software no-display">No cached results for this value!</span>
+</form>
+
+<span>Вывести список компьютеров с истёкшим гарантийным сроком</span>
+<form action="/handler/guarantee" method="get">
+	<label>Выберите дату: <input type="date" name="guaranteeDate" min="2015-01-01" max="2025-12-31" value="2022-05-16" data-type="guarantee" id="guaranteeDate" autocomplete="off"></label>
+	<input type="submit" name="getBtn" value="Ok">
+	<input type="submit" name="loadBtn" class="load-btn guarantee no-display" value="Load">
+	<span class="cached guarantee no-display">No cached results for this value!</span>
+</form>
+
+<?php
+	include_once 'view/inc/footer.phtml';
+?>

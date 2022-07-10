@@ -1,0 +1,60 @@
+<script>
+	window.onload = function() {
+		let param;
+		let result;
+		let cpuList;
+		let softwareList;
+		let guaranteeDate;
+
+		param = document.body.querySelector('.queryParam');
+		result = document.body.querySelector('.queryResult');
+
+		cpuList = document.getElementById('cpuList');
+		softwareList = document.getElementById('softwareList');
+		guaranteeDate = document.getElementById('guaranteeDate');
+
+		if (cpuList && softwareList && guaranteeDate) {
+			cpuList.addEventListener('input', inputHandler);
+			softwareList.addEventListener('input', inputHandler);
+			guaranteeDate.addEventListener('input', inputHandler);
+		}
+
+		if (param && result) {
+			if (result.classList.contains('load')) {
+				result.innerHTML = localStorage.getItem(param.dataset.param);
+			}
+			else {
+				if (localStorage.getItem(param.dataset.param) == null) {
+					localStorage.setItem(param.dataset.param, result.innerHTML);
+					document.querySelector('.save-done').classList.remove('no-display');
+				}
+				else {
+					document.querySelector('.save-already').classList.remove('no-display');
+				}
+			}
+		}
+	}
+
+	function inputHandler(event) {
+		let type = event.target.dataset.type;
+
+		if (localStorage.getItem(event.target.value) == null) {
+			getCachedSpan(type).classList.remove('no-display');
+			getLoadBtn(type).classList.add('no-display');
+		}
+		else {
+			getLoadBtn(type).classList.remove('no-display');
+			getCachedSpan(type).classList.add('no-display');
+		}
+	}
+
+	function getLoadBtn(type) {
+		return document.querySelector(`.load-btn.${type}`);
+	}
+
+	function getCachedSpan(type) {
+		return document.querySelector(`.cached.${type}`);
+	}
+</script>
+</body>
+</html>
